@@ -20,12 +20,12 @@ function RootContent({ children }: { children: React.ReactNode }) {
         localStorage.removeItem('senha');
         localStorage.removeItem('nome');
         setUser(null);
-      } else {
-        alert('Erro ao fazer logout.'); "erro"
+        } else {
+          alert('Erro ao fazer logout.');
+        }
+      } catch {
+        alert('Erro na requisição de logout.');
       }
-    } catch {
-      alert('Erro na requisição de logout.'); "erro"
-    }
   };
 
   return (
