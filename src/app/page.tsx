@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useAuth } from './context/AuthContext';
 import CardsSelecao from "./components/cards";
@@ -47,10 +48,12 @@ export default function Home() {
         
 
         <div className="mb-12 md:mb-0 md:ml-12 relative w-full max-w-md flex items-center justify-center">
-          <img
+          <Image
             src="/images/fundopagedas.svg"
             alt="Imagem da página"
             className="w-full h-auto object-contain drop-shadow-lg rounded-2xl"
+            width={400}
+            height={300}
           />
         </div>
       </section>
