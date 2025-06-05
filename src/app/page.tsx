@@ -20,8 +20,7 @@ export default function Home() {
   return (
     <main>
       <section
-        className="flex flex-row flex-nowrap flex-grow box-border justify-between px-[15%]"
-        style={{ padding: '0 15%' }}>
+        className="flex flex-row flex-nowrap flex-grow box-border justify-between px-[15%]">
         <div className="max-w-xl text-center md:text-left mt-12">
           <h2 className="text-4xl md:text-6xl font-extrabold mb-4 mt-4">ALERTA360</h2>
           <p className="text-lg md:text-xl mb-2 drop-shadow-lg">Inteligência que protege vidas</p>
