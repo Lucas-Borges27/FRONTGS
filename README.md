@@ -11,7 +11,6 @@ ALERTA360 é uma plataforma que oferece informações sobre registros de desastr
 - Autenticação de usuários e painel personalizado
 - Painel geral com registros de desastres
 - Interface responsiva utilizando TailwindCSS
-- Integração com Azure SDK para configuração e identidade
 - Conexão com banco de dados OracleDB
 - Uso de ícones com a biblioteca lucide-react
 
@@ -22,8 +21,6 @@ ALERTA360 é uma plataforma que oferece informações sobre registros de desastr
 - [Next.js 15](https://nextjs.org/)
 - [React 19](https://reactjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
-- [Azure App Configuration](https://www.npmjs.com/package/@azure/app-configuration)
-- [Azure Identity](https://www.npmjs.com/package/@azure/identity)
 - [OracleDB](https://www.npmjs.com/package/oracledb)
 - [lucide-react](https://www.npmjs.com/package/lucide-react)
 
