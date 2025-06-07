@@ -1,183 +1,117 @@
-Fechou, parça! Vou montar o **README.md completasso** pra tu botar pra rodar liso, com tudo que precisa, incluindo detalhes que tu falou e o jeitão do teu projeto. Vou organizar tudo pra ficar uma receita de bolo estilo malokeiro, simples e eficiente. Confere aí:
+# ALERTA360
+
+**Inteligência que protege vidas**
+
+ALERTA360 é uma plataforma que oferece informações sobre registros de desastres ocorridos no território nacional, com o objetivo de apoiar a prevenção e a resposta a situações de emergência.
 
 ---
 
-````markdown
-# 🔥 Guardião - Projeto FIAP
+## Features
 
-Sistema que gerencia usuários (login/cadastro), conecta com banco Oracle da FIAP, e exibe dados no front (Next.js + Tailwind + Power BI).
-
----
-
-## 📂 Estrutura do projeto
-
-```plaintext
-GSzip/
-│
-├── backend/               ← Backend FastAPI + Oracle
-│   └── backend.py
-│
-├── frontend/              ← Frontend Next.js
-│   ├── app/
-│   │   └── page.tsx       ← Página principal
-│   └── components/
-│       ├── header.tsx     ← Header com nome do usuário
-│       └── tabelaOcorrencias.tsx
-│
-└── README.md              ← Este arquivo
-````
+- Autenticação de usuários e painel personalizado
+- Painel geral com registros de desastres
+- Interface responsiva utilizando TailwindCSS
+- Integração com Azure SDK para configuração e identidade
+- Conexão com banco de dados OracleDB
+- Uso de ícones com a biblioteca lucide-react
 
 ---
 
-## ⚠️ Pré-requisitos
+## Tecnologias Utilizadas
 
-* Python 3.11+ instalado e configurado no PATH
-* Node.js 18+ instalado
-* Banco Oracle FIAP com:
-
-  * Host: `oracle.fiap.com.br`
-  * Porta: `1521`
-  * SID: `orcl`
-* (Opcional) Oracle Instant Client para modo thick (se for usar)
-
----
-
-## ⚙️ Backend (Python + FastAPI)
-
-1. Abra o terminal na pasta do backend:
-
-   ```bash
-   cd backend
-   ```
-
-2. Crie o ambiente virtual e ative:
-
-   Windows PowerShell:
-
-   ```powershell
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   ```
-
-   CMD:
-
-   ```cmd
-   python -m venv .venv
-   .venv\Scripts\activate.bat
-   ```
-
-   Linux/Mac:
-
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
-
-3. Instale as dependências:
-
-   ```bash
-   pip install fastapi uvicorn oracledb
-   ```
-
-4. Para rodar o servidor FastAPI:
-
-   ```bash
-   uvicorn backend:app --reload --host 0.0.0.0 --port 8000
-   ```
-
-5. Acesse a documentação da API pra testar:
-
-   [http://localhost:8000/docs](http://localhost:8000/docs)
+- [Next.js 15](https://nextjs.org/)
+- [React 19](https://reactjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Azure App Configuration](https://www.npmjs.com/package/@azure/app-configuration)
+- [Azure Identity](https://www.npmjs.com/package/@azure/identity)
+- [OracleDB](https://www.npmjs.com/package/oracledb)
+- [lucide-react](https://www.npmjs.com/package/lucide-react)
 
 ---
 
-## 🖥️ Frontend (Next.js + TailwindCSS)
+## Instalação
 
-1. Abra o terminal na pasta do frontend:
-
+1. Clone o repositório:
    ```bash
-   cd frontend
+   git clone https://github.com/Lucas-Borges27/FRONTGS.git
+   cd FRONTGS
    ```
 
-2. Instale as dependências do Node:
-
+2. Instale as dependências:
    ```bash
    npm install
    ```
 
-3. Rode o projeto Next.js:
-
+3. Inicie o servidor de desenvolvimento:
    ```bash
    npm run dev
    ```
 
-4. Acesse o site:
+---
 
-   [http://localhost:3000](http://localhost:3000)
+## Uso
+
+- Acesse o painel do usuário ou o painel geral a partir da página inicial.
+- Utilize as páginas de login e cadastro para autenticação.
+- O frontend está disponível para uso via Vercel (https://frontgs.vercel.app).
+- O backend é desenvolvido em Quarkus e está hospedado no Render (link do backend: https://global-solution.onrender.com).
 
 ---
 
-## 🔑 Configuração da conexão Oracle
+## API Endpoints
 
-No arquivo do backend (`backend.py`), configure assim:
+- `POST /usuarios/login` - Autenticação de usuário  
+  `https://global-solution.onrender.com/usuarios/login`
 
-```python
-import oracledb
+- `POST /usuarios` - Cadastro de novo usuário  
+  `https://global-solution.onrender.com/usuarios`
 
-connection = oracledb.connect(
-    user="rm560393",            # Seu RM FIAP
-    password="fiap25",          # Sua senha FIAP
-    dsn="oracle.fiap.com.br:1521/orcl",
-    mode=oracledb.DEFAULT_AUTH  # Modo thin (não precisa Oracle Client)
-)
+- `GET /ocorrencias/todas` - Obter todas as ocorrências (painel geral)  
+  `https://global-solution.onrender.com/ocorrencias/todas`
+
+- `GET /ocorrencias` - Obter ocorrências do usuário autenticado  
+  `https://global-solution.onrender.com/ocorrencias`
+
+- `POST /ocorrencias` - Adicionar nova ocorrência  
+  `https://global-solution.onrender.com/ocorrencias`
+
+- `PUT /ocorrencias/{id}` - Atualizar ocorrência existente  
+  `https://global-solution.onrender.com/ocorrencias/{id}`
+
+- `DELETE /ocorrencias/{id}` - Deletar ocorrência  
+  `https://global-solution.onrender.com/ocorrencias/{id}`
+
+---
+
+## Estrutura do Projeto
+
 ```
+src/
+ └── app/
+     ├── cadastro/          # Página de cadastro de usuários
+     ├── login/             # Página de login
+     ├── painel/            # Painel geral de desastres
+     ├── painelUsuario/     # Painel personalizado do usuário
+     ├── components/        # Componentes reutilizáveis (cards, footer, header, etc.)
+     ├── context/           # Contextos React (ex: AuthContext)
+     ├── page.tsx           # Página inicial
+     └── layout.tsx         # Layout principal da aplicação
+public/
+ └── images/                # Imagens e assets estáticos
+```
+---
+
+## Contribuição e Contato
+
+Este projeto foi desenvolvido por Yasmin Silva, Lucas Borges e Pedro Silva como parte do desafio Global Solution da FIAP, focado na criação de soluções tecnológicas inovadoras para prevenção e apoio em situações de desastres naturais.
+
+Repositório do projeto: [https://github.com/Lucas-Borges27/FRONTGS.git](https://github.com/Lucas-Borges27/FRONTGS.git)
+
+Para dúvidas ou contribuições, entre em contato com os desenvolvedores.
 
 ---
 
-## 🧪 Testando o fluxo
+## Licença
 
-* Acesse `/cadastro` no front pra criar usuário
-* Faça login em `/login`
-* Depois do login, o nome do usuário aparece no header
-* Logout limpa o estado
-* Atualiza a página que o estado persiste (usa localStorage)
+Este projeto é privado e não possui licença pública.
 
----
-
-## ⚠️ Problemas comuns e soluções
-
-* `ModuleNotFoundError: No module named 'fastapi'`
-
-  * Ative o `.venv` antes de rodar, ou instale as libs
-
-* `uvicorn` não é reconhecido
-
-  * Certifique-se que o ambiente virtual tá ativado
-  * Ou rode com o caminho completo do uvicorn: `.venv\Scripts\uvicorn.exe backend:app --reload`
-
-* Backend rodando, mas não acessa `http://localhost:8000/docs`
-
-  * Veja se não tem erro de import ou se o arquivo `backend.py` tem a variável `app = FastAPI()` exportada corretamente
-
-* `ORA-01017: invalid username/password`
-
-  * Confere RM e senha da FIAP
-
-* Frontend abre mas sem nome do usuário
-
-  * Confere se está salvando no localStorage ao logar
-  * Verifique se o header está recebendo a prop correta
-
----
-
-## 📱 Dicas
-
-* Use o navegador no modo dev tools para olhar localStorage e network
-* Para logout limpe o localStorage com `localStorage.clear()` ou remove os campos usados
-* Se mudar de página, o layout pode perder o header — considere usar layout global em `/app/layout.tsx`
-
----
-
-## 💬 Contato
-
-Feito com 💚 pelo 
