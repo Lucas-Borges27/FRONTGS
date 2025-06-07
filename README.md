@@ -2,7 +2,8 @@
 
 **Inteligência que protege vidas**
 
-ALERTA360 é uma plataforma que oferece informações sobre registros de desastres ocorridos no território nacional, com o objetivo de apoiar a prevenção e a resposta a situações de emergência.
+
+
 
 ---
 
@@ -105,6 +106,12 @@ Este projeto foi desenvolvido por Yasmin Silva|560039, Lucas Borges|560027 e Ped
 Repositório do projeto: [https://github.com/Lucas-Borges27/FRONTGS.git](https://github.com/Lucas-Borges27/FRONTGS.git)
 
 Para dúvidas ou contribuições, entre em contato com os desenvolvedores.
+
+---
+
+## Video Youtube
+
+[https://www.youtube.com/watch?v=ihP4QqzNg7g](https://www.youtube.com/watch?v=ihP4QqzNg7g)
 
 ---
 
