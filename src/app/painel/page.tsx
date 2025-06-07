@@ -19,7 +19,7 @@ const TabelaOcorrencias = () => {
 
   const fetchOcorrencias = async () => {
     try {
-      const response = await fetch('http://localhost:8080/ocorrencias/todas', {
+      const response = await fetch('https://global-solution.onrender.com/ocorrencias/todas', {
         credentials: 'include',
       });
       if (response.ok) {

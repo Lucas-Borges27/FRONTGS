@@ -23,7 +23,7 @@ export default function CadastroPage() {
     }
 
     try {
-      const res = await fetch('http://localhost:8080/usuarios', {
+      const res = await fetch('https://global-solution.onrender.com/usuarios', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, email, senha, cargo, orgao }),

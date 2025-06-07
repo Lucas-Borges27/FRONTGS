@@ -9,7 +9,7 @@ function RootContent({ children }: { children: React.ReactNode }) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:8080/usuarios/logout', {
+      const response = await fetch('https://global-solution.onrender.com/usuarios/logout', {
         method: 'POST',
         credentials: 'include',
       });
