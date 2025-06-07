@@ -100,7 +100,7 @@ public/
 
 ## Contribuição e Contato
 
-Este projeto foi desenvolvido por Yasmin Silva, Lucas Borges e Pedro Silva como parte do desafio Global Solution da FIAP, focado na criação de soluções tecnológicas inovadoras para prevenção e apoio em situações de desastres naturais.
+Este projeto foi desenvolvido por Yasmin Silva|560039, Lucas Borges|560027 e Pedro Silva|560393 como parte do desafio Global Solution da FIAP, focado na criação de soluções tecnológicas inovadoras para prevenção e apoio em situações de desastres naturais.
 
 Repositório do projeto: [https://github.com/Lucas-Borges27/FRONTGS.git](https://github.com/Lucas-Borges27/FRONTGS.git)
 
