@@ -12,6 +12,7 @@ interface Ocorrencia {
 
 const TabelaOcorrencias = () => {
   const [ocorrencias, setOcorrencias] = useState<Ocorrencia[]>([]);
+
   useEffect(() => {
     fetchOcorrencias();
   }, []);
@@ -47,7 +48,7 @@ const TabelaOcorrencias = () => {
       alert('Erro na comunicação com o servidor.');
     }
   };
-  
+
   return (
     <div className="max-w-6xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg text-white mt-10">
       <h2 className="text-3xl font-extrabold mt-10 mb-5 text-yellow-400 drop-shadow-lg">Lista de Ocorrências</h2>
@@ -84,6 +85,7 @@ const TabelaOcorrencias = () => {
                 <td className="border-b border-gray-600 px-6 py-3">{o.localizacao}</td>
                 <td className="border-b border-gray-600 px-6 py-3">{o.status}</td>
                 <td className="border-b border-gray-600 px-6 py-3">{o.data}</td>
+                
               </tr>
             ))}
           </tbody>
@@ -94,3 +96,4 @@ const TabelaOcorrencias = () => {
 };
 
 export default TabelaOcorrencias;
+

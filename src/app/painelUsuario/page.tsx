@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 interface Ocorrencia {
   id: number;
@@ -11,6 +12,7 @@ interface Ocorrencia {
 }
 
 const TabelaOcorrencias = () => {
+  const { user } = useAuth();
   const [ocorrencias, setOcorrencias] = useState<Ocorrencia[]>([]);
   const [novaOcorrencia, setNovaOcorrencia] = useState<Partial<Ocorrencia>>({});
   const [editandoId, setEditandoId] = useState<number | null>(null);
@@ -44,10 +46,10 @@ const TabelaOcorrencias = () => {
         }));
         setOcorrencias(mappedData);
       } else {
-        alert('Erro ao carregar ocorrências.'); 
+        alert('Erro ao carregar ocorrências.');
       }
     } catch {
-      alert('Erro na comunicação com o servidor.');  
+      alert('Erro na comunicação com o servidor.');
     }
   };
 
@@ -56,6 +58,10 @@ const TabelaOcorrencias = () => {
   };
 
   const adicionarOcorrencia = async () => {
+    if (!user) {
+      alert('Você precisa estar logado para adicionar uma ocorrência.');
+      return;
+    }
     if (
       novaOcorrencia.tipo &&
       novaOcorrencia.descricao &&
@@ -92,19 +98,23 @@ const TabelaOcorrencias = () => {
           setOcorrencias([...ocorrencias, mappedNova]);
           setNovaOcorrencia({});
         } else if (response.status === 401) {
-          alert('Usuário não autenticado.'); 
+          alert('Usuário não autenticado.');
         } else if (response.status === 400) {
-          alert('Dados inválidos para a ocorrência.'); 
+          alert('Dados inválidos para a ocorrência.');
         } else {
-          alert('Erro ao adicionar ocorrência.'); 
+          alert('Erro ao adicionar ocorrência.');
         }
       } catch {
-        alert('Erro na comunicação com o servidor.'); 
+        alert('Erro na comunicação com o servidor.');
       }
     }
   };
 
   const deletar = async (id: number) => {
+    if (!user) {
+      alert('Você precisa estar logado para excluir uma ocorrência.');
+      return;
+    }
     try {
       const response = await fetch(`http://localhost:8080/ocorrencias/${id}`, {
         method: 'DELETE',
@@ -116,18 +126,22 @@ const TabelaOcorrencias = () => {
       if (response.status === 204) {
         setOcorrencias(ocorrencias.filter((o) => o.id !== id));
       } else if (response.status === 404) {
-        alert('Ocorrência não encontrada.'); 
+        alert('Ocorrência não encontrada.');
       } else {
-        alert('Erro ao deletar ocorrência.'); 
+        alert('Erro ao deletar ocorrência.');
       }
     } catch (error) {
       console.error('Delete error:', error);
-      alert('Erro na comunicação com o servidor.'); 
+      alert('Erro na comunicação com o servidor.');
     }
   };
 
   const salvarEdicao = async () => {
     if (editandoId !== null) {
+      if (!user) {
+        alert('Você precisa estar logado para editar uma ocorrência.');
+        return;
+      }
       try {
         const response = await fetch(`http://localhost:8080/ocorrencias/${editandoId}`, {
           method: 'PUT',
@@ -172,11 +186,11 @@ const TabelaOcorrencias = () => {
           setEditandoId(null);
           setNovaOcorrencia({});
         } else {
-          alert('Erro ao atualizar ocorrência.'); 
+          alert('Erro ao atualizar ocorrência.');
         }
       } catch (error) {
         console.error('Update error:', error);
-        alert('Erro na comunicação com o servidor.'); 
+        alert('Erro na comunicação com o servidor.');
       }
     }
   };
@@ -257,20 +271,24 @@ const TabelaOcorrencias = () => {
                 <td className="border-b border-gray-600 px-6 py-3">{o.status}</td>
                 <td className="border-b border-gray-600 px-6 py-3">{o.data}</td>
                 <td className="border-b border-gray-600 px-6 py-3 flex gap-3">
-                  <button
-                    onClick={() => iniciarEdicao(o)}
-                    className="text-yellow-400 hover:text-yellow-300 font-semibold transition"
-                    aria-label="Editar ocorrência"
-                  >
-                    ✏️
-                  </button>
-                  <button
-                    onClick={() => deletar(o.id)}
-                    className="text-red-500 hover:text-red-400 font-semibold transition"
-                    aria-label="Excluir ocorrência"
-                  >
-                    🗑️
-                  </button>
+                  {user && (
+                    <>
+                      <button
+                        onClick={() => iniciarEdicao(o)}
+                        className="text-yellow-400 hover:text-yellow-300 font-semibold transition"
+                        aria-label="Editar ocorrência"
+                      >
+                        ✏️
+                      </button>
+                      <button
+                        onClick={() => deletar(o.id)}
+                        className="text-red-500 hover:text-red-400 font-semibold transition"
+                        aria-label="Excluir ocorrência"
+                      >
+                        🗑️
+                      </button>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}
