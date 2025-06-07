@@ -23,7 +23,7 @@ const TabelaOcorrencias = () => {
 
   const fetchOcorrencias = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/ocorrencias`, {
+      const response = await fetch('http://localhost:8080/ocorrencias', {
         credentials: 'include',
       });
       if (response.ok) {
@@ -70,7 +70,7 @@ const TabelaOcorrencias = () => {
       novaOcorrencia.data
     ) {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/ocorrencias`, {
+        const response = await fetch('http://localhost:8080/ocorrencias', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const TabelaOcorrencias = () => {
       return;
     }
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/ocorrencias/${id}`, {
+      const response = await fetch(`http://localhost:8080/ocorrencias/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });
@@ -143,7 +143,7 @@ const TabelaOcorrencias = () => {
         return;
       }
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/ocorrencias/${editandoId}`, {
+        const response = await fetch(`http://localhost:8080/ocorrencias/${editandoId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
